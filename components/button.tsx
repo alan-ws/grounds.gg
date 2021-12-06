@@ -19,6 +19,7 @@ const Styled = styled("a")((props: IProps) => ({
   //
   background: colors.primary,
   color: colors.white,
+  flex: 0.3,
 }));
 
 export const Button: FC<IButton> = ({ children, onClick }) => {

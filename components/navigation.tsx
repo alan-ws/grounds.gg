@@ -3,7 +3,7 @@ import { Container } from "./layouts";
 import Image from "next/image";
 import { Button } from "./button";
 
-const Bar = styled("nav")((props) => ({
+export const Bar = styled("nav")((props) => ({
   display: "flex",
   width: "100%",
   justifyContent: "space-between",
@@ -27,13 +27,14 @@ export const Navbar = () => {
         />
         <Navigation>
           <span>Product</span>
-          <span>Product</span>
-          <span>Product</span>
-          <span>Product</span>
-          <span>Product</span>
+          <span>Games</span>
+          <span>Merch</span>
+          <span>Swap</span>
+          <span>Vlogs</span>
         </Navigation>
         <Button>
           <span>Connect</span>
+          <Image src="/icons/login.svg" height="24px" width="24px" alt="down" />
         </Button>
       </Bar>
     </Container>
