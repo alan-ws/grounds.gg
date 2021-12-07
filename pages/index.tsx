@@ -20,8 +20,9 @@ const Home: NextPage = () => {
       <Container>
         <Intro />
         <Content />
-        <ProductInfo />
       </Container>
+
+      <ProductInfo />
 
       {/* <Footer /> */}
     </div>

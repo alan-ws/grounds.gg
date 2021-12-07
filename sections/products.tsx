@@ -1,28 +1,35 @@
 import { FlexDirectionProperty, JustifyContentProperty } from "csstype";
 import { styled } from "goober";
 import { colors } from "../components/styles";
-import { Text, TextBox } from "./we-are-game-fanatics";
+import { Content, Text, TextBox } from "./we-are-game-fanatics";
+import { Container as PageContainer } from "../components/layouts";
 import Image from "next/image";
+import { Button } from "../components/button";
 
-const Section = styled("section")((props) => ({
-  display: "flex",
-  flexDirection: "column",
+const Wrapper = styled("div")((props) => ({
   backgroundColor: colors.secondary,
+}));
+
+const Section = styled("div")((props) => ({
+  display: "flex",
+  position: "relative",
+  flexDirection: "column",
   flex: 1,
 }));
 
-const Container = styled("div")((props) => ({
+const Container = styled("section")((props: { margin: string }) => ({
   position: "relative",
-  margin: "2% 24% 8% 24%",
+  margin: props.margin,
 }));
 
 const Article = styled("article")(
   (props: {
     position: JustifyContentProperty;
     direction: FlexDirectionProperty;
+    flex?: number;
   }) => ({
     display: "flex",
-    flex: 1,
+    flex: props.flex,
     justifyContent: props.position,
     flexDirection: props.direction,
   })
@@ -37,30 +44,102 @@ const ImgBox = styled(Box)((props) => ({
   minHeight: "264px",
 }));
 
+const ProductBox = styled("div")((props) => ({
+  display: "flex",
+  flex: 0.25,
+}));
+
+const ProductIcon = styled("span")((props) => ({
+  display: "flex",
+  flex: 0.2,
+  justifyContent: "center",
+}));
+
+const ProductContent = styled("span")((props) => ({
+  display: "flex",
+  flex: 0.8,
+}));
+
+const PRODUCTS = [
+  {
+    title: "Lider",
+    content: "is our distributed, localised highly competitive PvE ladder.",
+    icon: "/icons/lider.svg",
+  },
+  {
+    title: "Serenity",
+    content:
+      "rewards each player as you play, complete quests, compete in PvE, bet, or challenge you will earn RNG or GG tokens.",
+    icon: "/icons/badge.svg",
+  },
+  {
+    title: "Challenge",
+    content:
+      "players to 5v5, 1v1, tournaments, and more to show off your skill, build a team, or each rewards via Serenity.",
+    icon: "/icons/lider.svg",
+  },
+  {
+    title: "Marketplace",
+    content:
+      "allows players to sell/buy/loan accounts, items, time, skills you’ve earned whilst playing your favorite competitve games like League of Legends.",
+    icon: "/icons/tag.svg",
+  },
+];
+
 export const ProductInfo = () => {
   return (
-    <Section>
-      <Container>
-        <TextBox>
-          <Text color="white" textStyle="h1">
-            Products
-          </Text>
-        </TextBox>
-        <TextBox>
-          <Text color="white" textStyle="h4">
-            We are in alpha-mode with the below products on our roadmap for
-            release in 2021...2022.
-          </Text>
-        </TextBox>
-        <Article position="center" direction="row">
-          <Article position="center" direction="column">
-            <ImgBox>
-              <Image src="/assets/product-shape.svg" alt="" layout="fill" />
-            </ImgBox>
-          </Article>
-          <Article position="flex-start" direction="column"></Article>
-        </Article>
-      </Container>
-    </Section>
+    <Wrapper>
+      <PageContainer>
+        <Section>
+          <Container margin="2% 24% 8% 24%">
+            <TextBox>
+              <Text color="white" textStyle="h1">
+                Products
+              </Text>
+            </TextBox>
+            <TextBox>
+              <Text color="white" textStyle="h4">
+                We are in alpha-mode with the below products on our roadmap for
+                release in 2021...2022.
+              </Text>
+            </TextBox>
+          </Container>
+          <Container margin="0% 8% 8% 8%">
+            <Article position="center" direction="row">
+              <Article flex={0.4} position="center" direction="column">
+                <ImgBox>
+                  <Image src="/assets/product-shape.svg" alt="" layout="fill" />
+                </ImgBox>
+                <Button>Claim your Avatar</Button>
+              </Article>
+              <Article flex={0.6} position="flex-start" direction="column">
+                {PRODUCTS.map((value, index) => {
+                  return (
+                    <ProductBox key={index}>
+                      <ProductIcon>
+                        <Image
+                          src={value.icon}
+                          height="36px"
+                          width="36px"
+                          alt=""
+                        />
+                      </ProductIcon>
+                      <ProductContent>
+                        <Text textStyle="h2" color="white">
+                          {value.title}{" "}
+                          <Text textStyle="h3" color="white">
+                            {value.content}
+                          </Text>
+                        </Text>
+                      </ProductContent>
+                    </ProductBox>
+                  );
+                })}
+              </Article>
+            </Article>
+          </Container>
+        </Section>
+      </PageContainer>
+    </Wrapper>
   );
 };
