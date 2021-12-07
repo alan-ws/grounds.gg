@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Dropdown } from "../components/dropdown";
 import { Intro } from "../components/intro";
 import { Container } from "../components/layouts";
 import { Navbar } from "../components/navigation";
-import { Content } from "../components/we-are-game-fanatics";
+import { ProductInfo } from "../sections/products";
+import { Content } from "../sections/we-are-game-fanatics";
 
 const Home: NextPage = () => {
   return (
@@ -20,6 +20,7 @@ const Home: NextPage = () => {
       <Container>
         <Intro />
         <Content />
+        <ProductInfo />
       </Container>
 
       {/* <Footer /> */}
