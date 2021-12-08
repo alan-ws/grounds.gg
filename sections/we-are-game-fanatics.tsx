@@ -14,7 +14,7 @@ const Container = styled("div")((props) => ({
   margin: "0% 8% 8% 8%",
 }));
 
-const BackgroundImage = styled("div")((props) => ({
+export const BackgroundImage = styled("div")((props) => ({
   position: "absolute",
   width: "100%",
   zIndex: 1,

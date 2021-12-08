@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Intro } from "../components/intro";
 import { Container } from "../components/layouts";
 import { Navbar } from "../components/navigation";
+import { OnBoarding } from "../sections/on-boarding";
 import { ProductInfo } from "../sections/products";
 import { Content } from "../sections/we-are-game-fanatics";
 
@@ -23,6 +24,10 @@ const Home: NextPage = () => {
       </Container>
 
       <ProductInfo />
+
+      <Container>
+        <OnBoarding />
+      </Container>
 
       {/* <Footer /> */}
     </div>
