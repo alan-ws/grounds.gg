@@ -6,6 +6,7 @@ import { Navbar } from "../components/navigation";
 import { OnBoarding } from "../sections/on-boarding";
 import { ProductInfo } from "../sections/products";
 import { Content } from "../sections/we-are-game-fanatics";
+import { Footer } from "../sections/footer";
 
 const Home: NextPage = () => {
   return (
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
         <OnBoarding />
       </Container>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
