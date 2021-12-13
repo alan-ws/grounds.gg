@@ -2,6 +2,8 @@ import Image from "next/image";
 import { styled } from "goober";
 import { FlexDirectionProperty, JustifyContentProperty } from "csstype";
 import { Button } from "./button";
+import { Text } from "../sections/we-are-game-fanatics";
+import { colors, fonts } from "./styles";
 
 const Section = styled("section")((props) => ({
   width: "100%",
@@ -9,16 +11,17 @@ const Section = styled("section")((props) => ({
 
 const Container = styled("div")((props) => ({
   display: "flex",
-  margin: "8% 16% 8% 16%",
+  margin: "8% 16% 16% 16%",
 }));
 
 const Article = styled("article")(
   (props: {
     position: JustifyContentProperty;
     direction: FlexDirectionProperty;
+    flex: number
   }) => ({
     display: "flex",
-    flex: 1,
+    flex: props.flex,
     justifyContent: props.position,
     flexDirection: props.direction,
   })
@@ -29,11 +32,17 @@ const CTA = styled("div")((props) => ({
   justifyContent: "space-between",
   alignItems: "center",
   flex: 0.55,
+  '&:hover': {
+    cursor: 'pointer'
+  }
 }));
 
-const Box = styled("div")((props) => ({
+const Box = styled("div")((props: {width?: string; height?: string; align?: string; margin?: string}) => ({
   display: "flex",
-  width: "100%",
+  width: props.width ?? "100%",
+  height: props.height,
+  alignSelf: props.align,
+  margin: props.margin
 }));
 
 const JoinAlpha = styled("div")((props) => ({
@@ -42,16 +51,25 @@ const JoinAlpha = styled("div")((props) => ({
 }));
 
 const Input = styled("input")((props) => ({
+  all: 'unset',
   display: "flex",
   flex: 0.7,
   marginRight: "16px",
+  background: 'rgba(13, 12, 34, 0.04)',
+  borderRadius: '8px',
+  paddingLeft: '24px',
+  '&::placeholder': {
+    color: colors.placeholder,
+    ...fonts.placeholder
+  },
+  color: colors.secondary,
 }));
 
 export const Intro = () => {
   return (
     <Section>
       <Container>
-        <Article position="flex-start" direction="column">
+        <Article position="flex-start" direction="column" flex={0.6}>
           <Box>
             <CTA>
               <Image
@@ -60,7 +78,7 @@ export const Intro = () => {
                 width="56px"
                 alt="avatar"
               />
-              <span>Claim your avatar</span>
+              <Text textStyle="a" color="primary">Claim your avatar</Text>
               <Image
                 src="/icons/arrow.svg"
                 height="32px"
@@ -69,24 +87,26 @@ export const Intro = () => {
               />
             </CTA>
           </Box>
-          <Box>
-            <h1>Earn as you play</h1>
+          <Box width="80%" margin="2% 0% 4% 0%">
+            <Text textStyle="h1" color="secondary">Earn as you play</Text>
           </Box>
-          <Box>
-            <p>
+          <Box margin="0% 0% 8% 0%">
+            <Text textStyle="h4" color="secondary">
               Grounds is the best way to earn crypto whilst contributing to your
               favorite competitive games
-            </p>
+            </Text>
           </Box>
           <Box>
             <JoinAlpha>
-              <Input />
-              <Button>Join Alpha</Button>
+              <Input placeholder="Email address" />
+              <Button btnStyle="primary" textStyle="btn1">Join Alpha</Button>
             </JoinAlpha>
           </Box>
         </Article>
-        <Article position="center" direction="row">
-          <Image src="/assets/orb.png" height="196px" width="196px" alt="orb" />
+        <Article position="center" direction="row" flex={0.4}>
+          <Box height="196px" width="196px" align="center">
+           <Image src="/assets/orb.png" height="196px" width="196px" alt="orb" />
+          </Box>
         </Article>
       </Container>
     </Section>

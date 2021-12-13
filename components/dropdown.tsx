@@ -1,7 +1,7 @@
 import { styled } from "goober";
 import { FC, useState } from "react";
 import { Button } from "./button";
-import { colors } from "./styles";
+import { colors, fonts } from "./styles";
 import Image from "next/image";
 
 const Container = styled("div")((props) => ({
@@ -10,10 +10,14 @@ const Container = styled("div")((props) => ({
 
 const List = styled("div")((props) => ({
   display: "flex",
-  position: "relative",
+  position: "absolute",
   backgroundColor: colors.primary,
   marginTop: "8px",
   borderRadius: "8px",
+  width: '100%',
+  ...fonts['btn2'],
+  padding: '16px 8px',
+  opacity: 0.7
 }));
 
 const Item = styled("div")((props) => ({
@@ -22,6 +26,10 @@ const Item = styled("div")((props) => ({
   padding: "8px",
   //   justifyContent: 'flex-end' (for mobile),
   color: colors.white,
+  width: '100%',
+  '&:hover': {
+    cursor: 'pointer',
+  }
 }));
 
 export const Dropdown: FC = () => {
@@ -32,7 +40,7 @@ export const Dropdown: FC = () => {
 
   return (
     <Container>
-      <Button onClick={() => setReveal((prev) => !prev)}>
+      <Button textStyle="btn1" btnStyle="primary" onClick={() => setReveal((prev) => !prev)}>
         <span>{value}</span>
         <Image
           src="/icons/triangle.svg"

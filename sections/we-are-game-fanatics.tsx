@@ -11,7 +11,7 @@ const Container = styled("div")((props) => ({
   display: "flex",
   flexDirection: "column",
   flex: 1,
-  margin: "0% 8% 8% 8%",
+  margin: "0% 8% 16% 8%",
 }));
 
 export const BackgroundImage = styled("div")((props) => ({
@@ -26,6 +26,7 @@ const CardStack = styled("div")((props) => ({
   justifyContent: "space-between",
   zIndex: 2,
   margin: "auto",
+  marginTop: "16px"
 }));
 
 const Card = styled("div")((props) => ({
@@ -64,7 +65,7 @@ interface IText {
 }
 
 export const Text = styled("span")((props: IText) => ({
-  color: props.color,
+  color: props.color && colors[props.color],
   ...fonts[props.textStyle],
 }));
 
@@ -73,7 +74,7 @@ export const Content = () => {
     <Section>
       <Container>
         <TextBox marginTop="16px">
-          <Text textStyle="h2">We are game-fanatics</Text>
+          <Text textStyle="h3">We are game-fanatics</Text>
         </TextBox>
         <TextBox maxWidth="50%">
           <Text textStyle="h4" maxWidth="50%">
@@ -87,9 +88,9 @@ export const Content = () => {
               <Image src="/assets/locked-security.png" alt="" layout="fill" />
             </ImgBox>
             <TextBox>
-              <Text textStyle="h3">Secure NFT accounts</Text>
+              <Text textStyle="cardH">Secure NFT accounts</Text>
             </TextBox>
-            <Text textStyle="p">
+            <Text textStyle="cardS">
               Create an account, claim an avatar, verify ownershiper, and
               encrypt and lock
             </Text>
@@ -99,9 +100,9 @@ export const Content = () => {
               <Image src="/assets/delivery.png" alt="" layout="fill" />
             </ImgBox>
             <TextBox>
-              <Text textStyle="h3">Robust reward system</Text>
+              <Text textStyle="cardH">Robust reward system</Text>
             </TextBox>
-            <Text textStyle="p">
+            <Text textStyle="cardS">
               We’ve built a robust reward system that includes PvE and PvP
               competition
             </Text>
@@ -111,9 +112,9 @@ export const Content = () => {
               <Image src="/assets/users.png" alt="" layout="fill" />
             </ImgBox>
             <TextBox>
-              <Text textStyle="h3">User centric approach</Text>
+              <Text textStyle="cardH">User centric approach</Text>
             </TextBox>
-            <Text textStyle="p">
+            <Text textStyle="cardS">
               All our tooling and solutions are based on user research and being
               dedicated gamers
             </Text>
@@ -123,9 +124,9 @@ export const Content = () => {
               <Image src="/assets/relationship.png" alt="" layout="fill" />
             </ImgBox>
             <TextBox>
-              <Text textStyle="h3">Strategic product offering</Text>
+              <Text textStyle="cardH">Strategic product offering</Text>
             </TextBox>
-            <Text textStyle="p">
+            <Text textStyle="cardS">
               We have a stacked roadmap and will release features strategically
             </Text>
           </Card>

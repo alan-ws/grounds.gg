@@ -42,22 +42,26 @@ const Box = styled("div")((props) => ({
 
 const ImgBox = styled(Box)((props) => ({
   minHeight: "264px",
+  marginBottom: "8%"
 }));
 
 const ProductBox = styled("div")((props) => ({
   display: "flex",
   flex: 0.25,
+  // marginBottom: "4%"
 }));
 
 const ProductIcon = styled("span")((props) => ({
   display: "flex",
   flex: 0.2,
   justifyContent: "center",
+  alignSelf: 'flex-start'
 }));
 
 const ProductContent = styled("span")((props) => ({
   display: "flex",
-  flex: 0.8,
+  flex: 0.6,
+  lineHeight: 0
 }));
 
 const PRODUCTS = [
@@ -86,6 +90,11 @@ const PRODUCTS = [
   },
 ];
 
+const CTA = styled('div')(() => ({
+  width: '64%',
+  alignSelf: 'center'
+}))
+
 export const ProductInfo = () => {
   return (
     <Wrapper>
@@ -93,11 +102,11 @@ export const ProductInfo = () => {
         <Section>
           <Container margin="2% 24% 8% 24%">
             <TextBox>
-              <Text color="white" textStyle="h1">
+              <Text color="white" textStyle="h2">
                 Products
               </Text>
             </TextBox>
-            <TextBox>
+            <TextBox maxWidth="80%">
               <Text color="white" textStyle="h4">
                 We are in alpha-mode with the below products on our roadmap for
                 release in 2021...2022.
@@ -110,7 +119,9 @@ export const ProductInfo = () => {
                 <ImgBox>
                   <Image src="/assets/product-shape.svg" alt="" layout="fill" />
                 </ImgBox>
-                <Button>Claim your Avatar</Button>
+                <CTA>
+                  <Button btnStyle="secondary" textStyle="btn1">Claim your Avatar</Button>
+                </CTA>
               </Article>
               <Article flex={0.6} position="flex-start" direction="column">
                 {PRODUCTS.map((value, index) => {
@@ -125,9 +136,9 @@ export const ProductInfo = () => {
                         />
                       </ProductIcon>
                       <ProductContent>
-                        <Text textStyle="h2" color="white">
+                        <Text textStyle="h5" color="white">
                           {value.title}{" "}
-                          <Text textStyle="h3" color="white">
+                          <Text textStyle="cardS" color="white">
                             {value.content}
                           </Text>
                         </Text>

@@ -15,6 +15,10 @@ const Navigation = styled("div")((props) => ({
   display: "flex",
 }));
 
+const CTA = styled('div')(() => ({
+  flex: 0.16
+}))
+
 export const Navbar = () => {
   return (
     <Container>
@@ -25,17 +29,19 @@ export const Navbar = () => {
           height="56px"
           width="184px"
         />
-        <Navigation>
+        {/* <Navigation>
           <span>Product</span>
           <span>Games</span>
           <span>Merch</span>
           <span>Swap</span>
           <span>Vlogs</span>
-        </Navigation>
-        <Button>
-          <span>Connect</span>
-          <Image src="/icons/login.svg" height="24px" width="24px" alt="down" />
-        </Button>
+        </Navigation> */}
+        <CTA>
+          <Button textStyle="btn2" btnStyle="primary">
+            <span>Connect</span>
+            <Image src="/icons/login.svg" height="24px" width="24px" alt="down" />
+          </Button>
+        </CTA>
       </Bar>
     </Container>
   );
