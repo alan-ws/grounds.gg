@@ -117,7 +117,7 @@ function debounce(func: (e: any) => void, timeout = 300){
   let timer: NodeJS.Timeout;
   return (...args: any) => {
     clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    timer = setTimeout(() => func.apply(this, args), timeout);
   };
 }
 
@@ -157,7 +157,7 @@ export const OnBoarding = () => {
   useEffect(() => {
     if (!inGameName) return;
     // const key = ''
-    const url = 'https://europe-west2-grounds-mvp.cloudfunctions.net/verifyGameName'
+    // const url = 'https://europe-west2-grounds-mvp.cloudfunctions.net/verifyGameName'
     const url = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURI(inGameName)}`
     fetch(url, {headers: {
       "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
