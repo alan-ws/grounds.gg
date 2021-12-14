@@ -7,11 +7,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const response = await fetch(url);
   const data = await response.json();
 
-  console.debug(data);
-
   const postcode = data.results.map((address: any) => {
     if (address.types.includes('postal_code')) {
       address.address_components.map((component: any) => {
+        console.log(component)
         if (component.types.includes('postal_code')) {
           return component.long_name;
         }
