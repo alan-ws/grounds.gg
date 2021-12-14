@@ -41,7 +41,7 @@ export const Footer = () => {
           />
           <CopyCert>
             <Image src="/icons/copy.svg" height="68px" width="32px" alt="" />
-            <Text textStyle="p" color="white">
+            <Text textStyle="placeholder" color="white">
               2021 Puzzle Studio
             </Text>
           </CopyCert>
