@@ -5,13 +5,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const key = process.env.GOOGLE_API_KEY;
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`
   const response = await fetch(url);
-  const data = await response.json();
+  const data: {results: any[]} = await response.json();
 
-  const postcode = data.results.map((address: any) => {
+  const postcode = data.results.filter((address: any) => {
     if (address.types.includes('postal_code')) {
-      address.address_components.map((component: any) => {
+      address.address_components.filter((component: any) => {
         console.log(component)
-        if (component.types.includes('postal_code')) {
+        if (component.types.includes('postal_code') && component.types.length === 1) {
           return component.long_name;
         }
       })
