@@ -8,17 +8,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const data: {results: any[]} = await response.json();
 
   const postcode = data.results.filter((address: any) => {
+    console.log(address.types)
     if (address.types.includes('postal_code')) {
       address.address_components.filter((component: any) => {
         console.log(component)
-        if (component.types.includes('postal_code') && component.types.length === 1) {
+        if (component.types.includes('postal_code_prefix')) {
           return component.long_name;
         }
       })
     }
   })
 
-  if (!postcode) res.status(404).json({
+  if (postcode.length < 1) res.status(404).json({
     message: 'No postcode found'
   });
 
