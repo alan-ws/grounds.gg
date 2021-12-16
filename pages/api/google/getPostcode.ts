@@ -34,6 +34,6 @@ export default async function handler(
     });
 
   res.status(200).json({
-    postcode: postcode,
+    postcode: postcode?.long_name,
   });
 }
