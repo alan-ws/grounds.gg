@@ -22,16 +22,18 @@ export default async function handler(
   const response = await fetch(url);
   const data: IResults = await response.json();
 
-  const postcode = data.results[0].address_components.find(
-    (value: AddressComponent) =>
-      value.types.includes("postal_code_prefix") ||
-      value.types.includes("postal_code")
-  );
+  console.log(data);
 
-  if (!postcode)
-    res.status(404).json({
-      message: "No postcode found",
-    });
+  // const postcode = data.results[0].address_components.find(
+  //   (value: AddressComponent) =>
+  //     value.types.includes("postal_code_prefix") ||
+  //     value.types.includes("postal_code")
+  // );
+
+  // if (!postcode)
+  //   res.status(404).json({
+  //     message: "No postcode found",
+  //   });
 
   res.status(200).json({
     postcode: "HI",
