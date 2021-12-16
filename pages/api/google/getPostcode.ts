@@ -1,15 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 type AddressComponent = {
-  'long_name': string;
-  'short_name': string;
-  'types': string[]
-}
+  long_name: string;
+  short_name: string;
+  types: string[];
+};
 
-type Result = {'address_components': AddressComponent[]};
+type Result = { address_components: AddressComponent[] };
 
 interface IResults {
-  results: Result[]
+  results: Result[];
 }
 
 export default async function handler(
@@ -22,17 +22,17 @@ export default async function handler(
   const response = await fetch(url);
   const data: IResults = await response.json();
 
-  const postcode =
-    data.results[0].address_components.find(
-      (value: AddressComponent) =>
-        value.types.includes('postal_code_prefix')
-        || value.types.includes('postal_code'));
+  const postcode = data.results[0].address_components.find(
+    (value: AddressComponent) =>
+      value.types.includes("postal_code_prefix") ||
+      value.types.includes("postal_code")
+  );
 
+  console.debug("postcode", postcode);
   if (!postcode)
     res.status(404).json({
       message: "No postcode found",
     });
-
 
   res.status(200).json({
     postcode: postcode?.long_name,
