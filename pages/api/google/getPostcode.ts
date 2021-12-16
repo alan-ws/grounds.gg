@@ -22,7 +22,6 @@ export default async function handler(
   const response = await fetch(url);
   const data: IResults = await response.json();
 
-  console.debug("data", data);
   const postcode = data.results[0].address_components.find(
     (value: AddressComponent) =>
       value.types.includes("postal_code_prefix") ||
@@ -35,6 +34,6 @@ export default async function handler(
     });
 
   res.status(200).json({
-    postcode: postcode?.long_name,
+    postcode: "HI",
   });
 }
