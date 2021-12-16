@@ -22,13 +22,13 @@ export default async function handler(
   const response = await fetch(url);
   const data: IResults = await response.json();
 
+  console.debug("data", data);
   const postcode = data.results[0].address_components.find(
     (value: AddressComponent) =>
       value.types.includes("postal_code_prefix") ||
       value.types.includes("postal_code")
   );
 
-  console.debug("postcode", postcode);
   if (!postcode)
     res.status(404).json({
       message: "No postcode found",
