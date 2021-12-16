@@ -23,7 +23,7 @@ export default async function handler(
   const data: IResults = await response.json();
 
   const postcode = data.results.filter((result: Result) => {
-    return result.address_components.filter((address: AddressComponent) => {
+    result.address_components.filter((address: AddressComponent) => {
       if (address.types.includes('postal_code_prefix'))
         return address.long_name;
 
