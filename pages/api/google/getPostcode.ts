@@ -22,13 +22,15 @@ export default async function handler(
   const response = await fetch(url);
   const data: IResults = await response.json();
 
-  console.log(data);
+  let found = false;
+  const postcode = data.results.map((value: Result) =>
+    value.address_components.find((value: AddressComponent) =>
+      !found ? 
+       value.types.includes("postal_code_prefix") ||
+        value.types.includes("postal_code") ? found = true : found = false)
+  );
 
-  // const postcode = data.results[0].address_components.find(
-  //   (value: AddressComponent) =>
-  //     value.types.includes("postal_code_prefix") ||
-  //     value.types.includes("postal_code")
-  // );
+  console.log(postcode);
 
   // if (!postcode)
   //   res.status(404).json({

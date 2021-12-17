@@ -18,7 +18,7 @@ const Article = styled("article")(
   (props: {
     position: JustifyContentProperty;
     direction: FlexDirectionProperty;
-    flex: number
+    flex: number;
   }) => ({
     display: "flex",
     flex: props.flex,
@@ -32,18 +32,25 @@ const CTA = styled("div")((props) => ({
   justifyContent: "space-between",
   alignItems: "center",
   flex: 0.55,
-  '&:hover': {
-    cursor: 'pointer'
-  }
+  "&:hover": {
+    cursor: "pointer",
+  },
 }));
 
-const Box = styled("div")((props: {width?: string; height?: string; align?: string; margin?: string}) => ({
-  display: "flex",
-  width: props.width ?? "100%",
-  height: props.height,
-  alignSelf: props.align,
-  margin: props.margin
-}));
+const Box = styled("div")(
+  (props: {
+    width?: string;
+    height?: string;
+    align?: string;
+    margin?: string;
+  }) => ({
+    display: "flex",
+    width: props.width ?? "100%",
+    height: props.height,
+    alignSelf: props.align,
+    margin: props.margin,
+  })
+);
 
 const JoinAlpha = styled("div")((props) => ({
   display: "flex",
@@ -51,16 +58,16 @@ const JoinAlpha = styled("div")((props) => ({
 }));
 
 const Input = styled("input")((props) => ({
-  all: 'unset',
+  all: "unset",
   display: "flex",
   flex: 0.7,
   marginRight: "16px",
-  background: 'rgba(13, 12, 34, 0.04)',
-  borderRadius: '8px',
-  paddingLeft: '24px',
-  '&::placeholder': {
+  background: "rgba(13, 12, 34, 0.04)",
+  borderRadius: "8px",
+  paddingLeft: "24px",
+  "&::placeholder": {
     color: colors.placeholder,
-    ...fonts.placeholder
+    ...fonts.placeholder,
   },
   color: colors.secondary,
 }));
@@ -78,7 +85,9 @@ export const Intro = () => {
                 width="56px"
                 alt="avatar"
               />
-              <Text textStyle="a" color="primary">Claim your avatar</Text>
+              <Text textStyle="a" color="primary">
+                Claim your avatar
+              </Text>
               <Image
                 src="/icons/arrow.svg"
                 height="32px"
@@ -88,7 +97,9 @@ export const Intro = () => {
             </CTA>
           </Box>
           <Box width="80%" margin="2% 0% 4% 0%">
-            <Text textStyle="h1" color="secondary">Earn as you play</Text>
+            <Text textStyle="h1" color="secondary">
+              Earn as you play
+            </Text>
           </Box>
           <Box margin="0% 0% 8% 0%">
             <Text textStyle="h4" color="secondary">
@@ -99,13 +110,20 @@ export const Intro = () => {
           <Box>
             <JoinAlpha>
               <Input placeholder="Email address" />
-              <Button btnStyle="primary" textStyle="btn1">Join Alpha</Button>
+              <Button btnStyle="primary" textStyle="btn1">
+                Join Alpha
+              </Button>
             </JoinAlpha>
           </Box>
         </Article>
         <Article position="center" direction="row" flex={0.4}>
           <Box height="196px" width="196px" align="center">
-           <Image src="/assets/orb.png" height="196px" width="196px" alt="orb" />
+            <Image
+              src="/assets/orb.png"
+              height="196px"
+              width="196px"
+              alt="orb"
+            />
           </Box>
         </Article>
       </Container>
