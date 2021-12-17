@@ -1,43 +1,74 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-type AddressComponent = {
+export type AddressComponent = {
   long_name: string;
   short_name: string;
   types: string[];
 };
 
-type Result = { address_components: AddressComponent[] };
+export type Geo = {
+  location: {
+    lat: number;
+    lng: number;
+  };
+};
 
-interface IResults {
+export type Result = {
+  address_components: AddressComponent[];
+  geometry: Geo;
+};
+
+export interface IResults {
   results: Result[];
 }
+
+export const ALLOWED_ORIGINS = ["http://localhost:3000/"];
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.headers.referer === undefined) {
+    res.status(404).json({
+      message: "Not allowed",
+    });
+    return;
+  }
+
+  if (!ALLOWED_ORIGINS.includes(req.headers.referer)) {
+    res.status(404).json({
+      message: "Not allowed",
+    });
+    return;
+  }
+
   const { lat, lng } = req.query;
   const key = process.env.GOOGLE_API_KEY;
   const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`;
   const response = await fetch(url);
   const data: IResults = await response.json();
 
-  let found = false;
-  const postcode = data.results.map((value: Result) =>
-    value.address_components.find((value: AddressComponent) =>
-      !found ? 
-       value.types.includes("postal_code_prefix") ||
-        value.types.includes("postal_code") ? found = true : found = false)
+  if (data.results.length < 1) {
+    res.status(404).json({
+      message: "Postcode not found",
+    });
+    return;
+  }
+
+  const postcodeObject = data.results[0].address_components.find(
+    (value: AddressComponent) =>
+      value.types.includes("postal_code_prefix") ||
+      value.types.includes("postal_code")
   );
 
-  console.log(postcode);
-
-  // if (!postcode)
-  //   res.status(404).json({
-  //     message: "No postcode found",
-  //   });
+  if (postcodeObject === undefined) {
+    res.status(404).json({
+      message: "Postcode not found",
+    });
+    return;
+  }
 
   res.status(200).json({
-    postcode: "HI",
+    postcode: postcodeObject.long_name,
   });
 }

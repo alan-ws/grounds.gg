@@ -8,7 +8,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^9.6.1",
     "goober": "^2.1.0",
     "next": "12.0.7",
     "react": "17.0.2",
@@ -20,6 +19,11 @@
     "csstype": "^2.6.2",
     "eslint": "8.4.0",
     "eslint-config-next": "12.0.7",
-    "typescript": "4.5.2"
+    "typescript": "4.5.2",
+    "vercel": "^23.1.2"
+  },
+  "volta": {
+    "node": "17.2.0",
+    "yarn": "1.22.17"
   }
 }
