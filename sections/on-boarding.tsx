@@ -138,7 +138,7 @@ export const OnBoarding = () => {
     if (!browserCoords) return;
     if (postCodeRef.current) postCodeRef.current.value = "";
     const url = `http://localhost:3000/api/google/getPostcode?lat=${browserCoords.latitude}&lng=${browserCoords.longitude}`;
-    fetch(url, { headers: { origin: "http://localhost:3000" } })
+    fetch(url)
       .then((res) => res.json())
       .then((data) => setApiPostCode(data.postcode))
       .catch((err) => console.error(err));
@@ -157,16 +157,10 @@ export const OnBoarding = () => {
 
   useEffect(() => {
     if (!inGameName) return;
-    const url = `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${encodeURI(
+    const url = `http://localhost:3000/api/riot/checkGameName?region=euw1&gameName=${encodeURI(
       inGameName
     )}`;
-    fetch(url, {
-      headers: {
-        "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
-        "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Riot-Token": "",
-      },
-    })
+    fetch(url)
       .then((res) => res.json())
       .then((data) => console.log(data));
   }, [inGameName]);
