@@ -60,14 +60,7 @@ export default async function handler(
 
   if (ERROR_STATS[response.status]) {
     console.error('ERROR', ERROR_STATS[response.status]);
-    res.status(503).json({
-      message: ERROR_STATS[503]
-    });
-    return;
-  }
-
-  if (response.status === 404) {
-    res.status(404).json({
+    res.status(response.status).json({
       message: ERROR_STATS[response.status]
     });
     return;
@@ -75,8 +68,16 @@ export default async function handler(
   
   const data: Summoner = await response.json();
   const userPartial = {
-    
+    level: data.summonerLevel,
+    accountId: data.accountId,
+    summonerId: data.id,
+    name: data.name,
+    iconId: data.profileIconId,
+    puuid: data.puuid,
+    verifiedOwnership: false, 
   }
+
+  fetch('http://localhost:5001/grounds-1cfae/us-central1/helloWorld', {method: 'POST', body: JSON.stringify(userPartial)});
 
   res.status(200).json({
     message: "success"
