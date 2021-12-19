@@ -5,6 +5,8 @@ import { Button } from "../components/button";
 import { Dropdown } from "../components/dropdown";
 import { colors, fonts } from "../components/styles";
 import { BackgroundImage, Text } from "./we-are-game-fanatics";
+import Cookies from "js-cookie";
+import Toastify from "toastify-js";
 
 const Section = styled("section")((props) => ({
   position: "relative",
@@ -75,6 +77,9 @@ const Input = styled(
     ...fonts.placeholder,
   },
   color: colors.secondary,
+  "&:disabled": {
+    cursor: "not-allowed",
+  },
 }));
 
 const CTA = styled("div")(() => ({
@@ -82,7 +87,10 @@ const CTA = styled("div")(() => ({
   width: "97%",
 }));
 
-const InputCta = styled("div")(() => ({
+const InputCta = styled(
+  "div",
+  forwardRef
+)(() => ({
   display: "flex",
   minHeight: "64px",
   "& > input": {
@@ -93,7 +101,7 @@ const InputCta = styled("div")(() => ({
   },
 }));
 
-const PostcodeInput = styled("div")(() => ({
+const PostcodeInput = styled("div")((props) => ({
   display: "flex",
   flex: 2,
   minHeight: "64px",
@@ -129,10 +137,29 @@ function debounce(func: (e: any) => void, timeout = 300) {
 export const OnBoarding = () => {
   const [browserCoords, setBrowserCoords] = useState<any>();
   const [userPostcode, setUserPostcode] = useState<string>();
-  const [verifiedPostcode, setVerifyPostcode] = useState<boolean>();
+  const [verifiedPostcode, setVerifyPostcode] = useState<boolean>(false);
   const [apiPostCode, setApiPostCode] = useState<string>();
   const postCodeRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
   const [inGameName, setInGameName] = useState<string>("");
+  const [verifiedGameName, setVerifiedGameName] = useState<boolean>(false);
+  const [icons, setIcons] = useState<{ current: string; changeTo: string }>();
+  const [callBackId, setCallBackId] = useState<string>();
+  const [gameSelected, setSelectedGame] = useState<boolean>(false);
+
+  const handleToast = (e) => {
+    if (!gameSelected)
+      Toastify({
+        text: "Please select a game",
+        duration: 3000,
+      }).showToast();
+  };
+
+  useEffect(() => {
+    nameRef.current?.addEventListener("click", handleToast);
+    nameRef.current?.addEventListener("touchstart", handleToast);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!browserCoords) return;
@@ -159,11 +186,34 @@ export const OnBoarding = () => {
     if (!inGameName) return;
     const url = `http://localhost:3000/api/riot/checkGameName?region=euw1&gameName=${encodeURI(
       inGameName
-    )}`;
+    )}&postcode=${userPostcode ?? apiPostCode}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setVerifiedGameName(data.message === "success" ? true : false);
+        setIcons({
+          current: data.icon.current,
+          changeTo: data.icon.change,
+        });
+        setCallBackId(data.callbackId);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inGameName]);
+
+  useEffect(() => {
+    if (verifiedPostcode && verifiedPostcode) {
+      const url = `http://localhost:3000/api/admin/cache`;
+      const body = {
+        postcode: userPostcode ?? apiPostCode,
+        name: inGameName,
+        callbackId: callBackId,
+      };
+      fetch(url, { body: JSON.stringify(body), method: "POST" })
+        .then((res) => res.text())
+        .then((cookie) => Cookies.set("cache", cookie));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [verifiedGameName, verifiedPostcode]);
 
   const handleLocation = useCallback(() => {
     if (!window.navigator) return;
@@ -194,6 +244,11 @@ export const OnBoarding = () => {
   };
   const handleInGameInput = debounce(inGameNameCallback, 1000);
 
+  const selectGame = useCallback((game: string) => {
+    console.log(game);
+    setSelectedGame(game ? true : false);
+  }, []);
+
   return (
     <Section>
       <Container>
@@ -215,7 +270,7 @@ export const OnBoarding = () => {
             >
               <Image src="/icons/pin.svg" height="32px" width="32px" alt="" />
             </Button>
-            <PostcodeInput>
+            <PostcodeInput onresponse={apiPostCode || verifiedPostcode}>
               <Input
                 ref={postCodeRef}
                 onBlur={postcodeInputCallback}
@@ -228,13 +283,17 @@ export const OnBoarding = () => {
             </PostcodeInput>
           </Location>
           <DropDownCta>
-            <Dropdown />
+            <Dropdown
+              handler={selectGame}
+              disabled={apiPostCode ? !apiPostCode : !verifiedPostcode}
+            />
           </DropDownCta>
           <InputCta>
             <Input
               flex={1}
               placeholder="in game name"
               onChange={handleInGameInput}
+              disabled={!gameSelected}
             />
           </InputCta>
           <CTA>
@@ -242,6 +301,8 @@ export const OnBoarding = () => {
               Claim your avatar
             </Button>
           </CTA>
+          {icons?.current}
+          {icons?.changeTo}
         </FormContainer>
         <GLogoPosition top="164px" right="196px">
           <Image src="/icons/g-one.svg" alt="" height="140px" width="150px" />
