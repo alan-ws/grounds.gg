@@ -1,1 +1,15 @@
 Web / API server started at localhost:4000
+/home/alanw/.volta/tools/image/node/16.13.1/bin/node[8595]: ../src/node.cc:765:void node::ResetStdio(): Assertion `!(err != 0) || (err == -1 && (*__errno_location ()) == 1)' failed.
+ 1: 0xb00d90 node::Abort() [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+ 2: 0xb00e0e  [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+ 3: 0xac0f04 node::ResetStdio() [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+ 4: 0xac0fc0 node::SignalExit(int, siginfo_t*, void*) [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+ 5: 0x7ffbed79f870  [/usr/lib/libpthread.so.0]
+ 6: 0x7ffbed6be92e epoll_wait [/usr/lib/libc.so.6]
+ 7: 0x156c93f  [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+ 8: 0x155ac68 uv_run [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+ 9: 0xa3dfe5 node::SpinEventLoop(node::Environment*) [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+10: 0xb42dc6 node::NodeMainInstance::Run(node::EnvSerializeInfo const*) [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+11: 0xac4812 node::Start(int, char**) [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]
+12: 0x7ffbed5e7b25 __libc_start_main [/usr/lib/libc.so.6]
+13: 0xa3bf3c  [/home/alanw/.volta/tools/image/node/16.13.1/bin/node]

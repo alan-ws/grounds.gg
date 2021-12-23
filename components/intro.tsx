@@ -4,6 +4,7 @@ import { FlexDirectionProperty, JustifyContentProperty } from "csstype";
 import { Button } from "./button";
 import { Text } from "../sections/we-are-game-fanatics";
 import { colors, fonts } from "./styles";
+import { useCallback, useState } from "react";
 
 const Section = styled("section")((props) => ({
   width: "100%",
@@ -72,7 +73,33 @@ const Input = styled("input")((props) => ({
   color: colors.secondary,
 }));
 
+const isEmailAddress = (maybeEmail?: string): boolean => {
+  return maybeEmail &&
+    maybeEmail.includes("@") &&
+    maybeEmail.match(/^\S+@*\./) &&
+    maybeEmail.length > 2
+    ? true
+    : false;
+};
+
+const showToast = (state: "error" | "info", message: string) => {};
+
 export const Intro = () => {
+  const [email, setEmail] = useState<string>();
+
+  const handleEmailInput = useCallback((e: any) => {
+    setEmail(e.target.value);
+  }, []);
+
+  const handleEmailSubmission = useCallback(() => {
+    const url = "";
+    if (!isEmailAddress) {
+      showToast("error", "Without an email address, we cannot stay in touch");
+      return;
+    }
+    // fetch(url, { body: JSON.stringify({ email: email }) });
+  }, [email]);
+
   return (
     <Section>
       <Container>
@@ -109,8 +136,12 @@ export const Intro = () => {
           </Box>
           <Box>
             <JoinAlpha>
-              <Input placeholder="Email address" />
-              <Button btnStyle="primary" textStyle="btn1">
+              <Input placeholder="Email address" onChange={handleEmailInput} />
+              <Button
+                btnStyle="primary"
+                textStyle="btn1"
+                onClick={handleEmailSubmission}
+              >
                 Join Alpha
               </Button>
             </JoinAlpha>

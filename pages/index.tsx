@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>rounds</title>
+        <title>Grounds</title>
         <meta name="description" content="Earn crypto as you play" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
