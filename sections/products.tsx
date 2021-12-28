@@ -1,68 +1,66 @@
-import { FlexDirectionProperty, JustifyContentProperty } from "csstype";
-import { styled } from "goober";
-import { colors } from "../components/styles";
-import { Content, Text, TextBox } from "./we-are-game-fanatics";
 import { Container as PageContainer } from "../components/layouts";
 import Image from "next/image";
-import { Button } from "../components/button";
+import { Box, Flex , Text} from "@chakra-ui/react";
+import { FC } from "react";
+import { TextBox } from "./we-are-game-fanatics";
 
-const Wrapper = styled("div")((props) => ({
-  backgroundColor: colors.secondary,
-}));
+// const Wrapper = styled("div")((props) => ({
+//   backgroundColor: colors.secondary,
+// }));
 
-const Section = styled("div")((props) => ({
-  display: "flex",
-  position: "relative",
-  flexDirection: "column",
-  flex: 1,
-}));
+// const Section = styled("div")((props) => ({
+//   display: "flex",
+//   position: "relative",
+//   flexDirection: "column",
+//   flex: 1,
+// }));
 
-const Container = styled("section")((props: { margin: string }) => ({
-  position: "relative",
-  margin: props.margin,
-}));
+// const Container = styled("section")((props: { margin: string }) => ({
+//   position: "relative",
+//   margin: props.margin,
+// }));
 
-const Article = styled("article")(
-  (props: {
-    position: JustifyContentProperty;
-    direction: FlexDirectionProperty;
-    flex?: number;
-  }) => ({
-    display: "flex",
-    flex: props.flex,
-    justifyContent: props.position,
-    flexDirection: props.direction,
-  })
-);
+// const Article = styled("article")(
+//   (props: {
+//     position: JustifyContentProperty;
+//     direction: FlexDirectionProperty;
+//     flex?: number;
+//   }) => ({
+//     display: "flex",
+//     flex: props.flex,
+//     justifyContent: props.position,
+//     flexDirection: props.direction,
+//   })
+// );
 
-const Box = styled("div")((props) => ({
-  position: "relative",
-  width: "100%",
-}));
+// const Box = styled("div")((props) => ({
+//   position: "relative",
+//   width: "100%",
+// }));
 
-const ImgBox = styled(Box)((props) => ({
-  minHeight: "264px",
-  marginBottom: "8%"
-}));
+// const ImgBox = styled(Box)((props) => ({
+//   minHeight: "264px",
+//   marginBottom: "8%"
+// }));
 
-const ProductBox = styled("div")((props) => ({
-  display: "flex",
-  flex: 0.25,
-  // marginBottom: "4%"
-}));
+// const ProductBox = styled("div")((props) => ({
+//   display: "flex",
+//   flex: 0.25,
+//   // marginBottom: "4%"
+// }));
 
-const ProductIcon = styled("span")((props) => ({
-  display: "flex",
-  flex: 0.2,
-  justifyContent: "center",
-  alignSelf: 'flex-start'
-}));
+// const ProductIcon = styled("span")((props) => ({
+//   display: "flex",
+//   flex: 0.2,
+//   justifyContent: "center",
+//   alignSelf: 'flex-start'
+// }));
 
-const ProductContent = styled("span")((props) => ({
-  display: "flex",
-  flex: 0.6,
-  lineHeight: 0
-}));
+// const ProductContent = styled("span")((props) => ({
+//   display: "flex",
+//   flex: 0.6,
+//   lineHeight: 0
+// }));
 
 const PRODUCTS = [
   {
@@ -90,30 +88,32 @@ const PRODUCTS = [
   },
 ];
 
-const CTA = styled('div')(() => ({
-  width: '64%',
-  alignSelf: 'center'
-}))
+// const CTA = styled('div')(() => ({
+//   width: '64%',
+//   alignSelf: 'center'
+// }))
+
+export const BackGroundColorDiv: FC = ({ children }) => <Box backgroundColor={'#0D0C22'}>{children}</Box>
 
 export const ProductInfo = () => {
   return (
-    <Wrapper>
+    <BackGroundColorDiv>
       <PageContainer>
-        <Section>
-          <Container margin="2% 24% 8% 24%">
+        <Flex pos={"relative"} flexDir={"column"} w={"100%"}>
+          <Box as="section" margin={{base: "8% 4% 16% 4%", lg: "2% 24% 8% 24%"}}>
             <TextBox>
               <Text color="white" textStyle="h2">
                 Products
               </Text>
             </TextBox>
-            <TextBox maxWidth="80%">
+            <TextBox>
               <Text color="white" textStyle="h4">
                 We are in alpha-mode with the below products on our roadmap for
                 release in 2021...2022.
               </Text>
             </TextBox>
-          </Container>
-          <Container margin="0% 8% 8% 8%">
+          </Box>
+          {/* <Container margin="0% 8% 8% 8%">
             <Article position="center" direction="row">
               <Article flex={0.4} position="center" direction="column">
                 <ImgBox>
@@ -148,9 +148,9 @@ export const ProductInfo = () => {
                 })}
               </Article>
             </Article>
-          </Container>
-        </Section>
+          </Container> */}
+        </Flex>
       </PageContainer>
-    </Wrapper>
+    </BackGroundColorDiv>
   );
 };

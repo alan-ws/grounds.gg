@@ -1,12 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-// import { Intro } from "../components/intro";
-// import { Container } from "../components/layouts";
+import { Intro } from "../components/intro";
 import { Navbar } from "../components/navigation";
-// import { OnBoarding } from "../sections/on-boarding";
-// import { ProductInfo } from "../sections/products";
+import { OnBoarding } from "../sections/on-boarding";
+import { ProductInfo } from "../sections/products";
 import { Content } from "../sections/we-are-game-fanatics";
-// import { Footer } from "../sections/footer";
+import { Footer } from "../sections/footer";
 
 const Home: NextPage = () => {
   return (
@@ -18,17 +17,11 @@ const Home: NextPage = () => {
       </Head>
 
       <Navbar />
-
-      {/* <Intro /> */}
+      <Intro />
       <Content />
-
-      {/* <ProductInfo />
-
-      <Container>
-        <OnBoarding />
-      </Container>
-
-      <Footer /> */}
+      <ProductInfo />
+      <OnBoarding />
+      <Footer />
     </div>
   );
 };

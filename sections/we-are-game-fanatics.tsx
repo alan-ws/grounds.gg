@@ -60,7 +60,7 @@ const CardImage: FC = ({ children }) => (
 //   })
 // );
 
-const TextBox: FC = ({ children }) => (
+export const TextBox: FC = ({ children }) => (
   <Box textAlign={"center"} margin={"auto"}>
     {children}
   </Box>
@@ -82,15 +82,15 @@ export const Content = () => {
     <Container>
       <Box as="section">
         <Flex pos="relative" flexDir="column" flex={1} margin="0% 8% 16% 8%">
-          {/* <TextBox marginTop="16px">
+          <Box textAlign={"center"} marginTop="16px">
             <Text textStyle="h3">We are game-fanatics</Text>
-          </TextBox>
-          <TextBox maxWidth="50%">
-            <Text textStyle="h4" maxWidth="50%">
+          </Box>
+          <Box textAlign={"center"} maxWidth={{lg: "50%"}}>
+            <Text textStyle="h4" maxWidth={{lg: "50%"}}>
               We are building the tooling and solutions to make gaming rewarding
               for all invovled.
             </Text>
-          </TextBox> */}
+          </Box>
           <Flex
             flexDir={{ base: "column", lg: "row" }}
             justifyContent={{ lg: "space-between" }}
