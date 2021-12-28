@@ -13,6 +13,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Grounds</title>
         <meta name="description" content="Earn crypto as you play" />
+        <meta name="keywords" content="crypto, gaming, league of legends" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
