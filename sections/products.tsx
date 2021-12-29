@@ -1,6 +1,6 @@
 import { Container as PageContainer } from "../components/layouts";
 import Image from "next/image";
-import { Box, Flex , Text} from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { FC } from "react";
 import { TextBox } from "./we-are-game-fanatics";
 
@@ -93,62 +93,76 @@ const PRODUCTS = [
 //   alignSelf: 'center'
 // }))
 
-export const BackGroundColorDiv: FC = ({ children }) => <Box backgroundColor={'#0D0C22'}>{children}</Box>
+export const BackGroundColorDiv: FC = ({ children }) => (
+  <Box backgroundColor={"#0D0C22"}>{children}</Box>
+);
 
 export const ProductInfo = () => {
   return (
     <BackGroundColorDiv>
       <PageContainer>
         <Flex pos={"relative"} flexDir={"column"} w={"100%"}>
-          <Box as="section" margin={{base: "8% 4% 16% 4%", lg: "2% 24% 8% 24%"}}>
+          <Box
+            as="section"
+            margin={{ base: "16% 4% 16% 4%", lg: "2% 24% 8% 24%" }}
+          >
             <TextBox>
-              <Text color="white" textStyle="h2">
+              <Text color="white" textStyle="h1" mb={{ base: "8%" }}>
                 Products
               </Text>
             </TextBox>
             <TextBox>
               <Text color="white" textStyle="h4">
                 We are in alpha-mode with the below products on our roadmap for
-                release in 2021...2022.
+                release in 2022.
               </Text>
             </TextBox>
           </Box>
-          {/* <Container margin="0% 8% 8% 8%">
-            <Article position="center" direction="row">
-              <Article flex={0.4} position="center" direction="column">
+          <Box pos="relative" margin={{ base: "0% 8%", lg: "0% 8% 8% 8%" }}>
+            <Flex justifyContent={{ lg: "center" }} direction="row">
+              {/* <Article flex={0.4} position="center" direction="column">
                 <ImgBox>
                   <Image src="/assets/product-shape.svg" alt="" layout="fill" />
                 </ImgBox>
                 <CTA>
                   <Button btnStyle="secondary" textStyle="btn1">Claim your Avatar</Button>
                 </CTA>
-              </Article>
-              <Article flex={0.6} position="flex-start" direction="column">
+              </Article> */}
+              <Flex
+                w={{ base: "100%" }}
+                justifyContent={{ lg: "flex-start" }}
+                direction="column"
+              >
                 {PRODUCTS.map((value, index) => {
                   return (
-                    <ProductBox key={index}>
-                      <ProductIcon>
+                    <Flex key={index} mb={{ base: "24px" }}>
+                      <Flex
+                        as="span"
+                        w={{ base: "20%" }}
+                        justifyContent={{ lg: "center" }}
+                        alignSelf={{ lg: "flex-start" }}
+                      >
                         <Image
                           src={value.icon}
                           height="36px"
                           width="36px"
                           alt=""
                         />
-                      </ProductIcon>
-                      <ProductContent>
+                      </Flex>
+                      <Flex as="span" w={{ base: "80%" }}>
                         <Text textStyle="h5" color="white">
                           {value.title}{" "}
                           <Text textStyle="cardS" color="white">
                             {value.content}
                           </Text>
                         </Text>
-                      </ProductContent>
-                    </ProductBox>
+                      </Flex>
+                    </Flex>
                   );
                 })}
-              </Article>
-            </Article>
-          </Container> */}
+              </Flex>
+            </Flex>
+          </Box>
         </Flex>
       </PageContainer>
     </BackGroundColorDiv>

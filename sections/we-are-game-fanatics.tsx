@@ -82,11 +82,15 @@ export const Content = () => {
     <Container>
       <Box as="section">
         <Flex pos="relative" flexDir="column" flex={1} margin="0% 8% 16% 8%">
-          <Box textAlign={"center"} marginTop="16px">
+          <Box textAlign={"center"} mt={{ base: "16%" }} mb={{ base: "4%" }}>
             <Text textStyle="h3">We are game-fanatics</Text>
           </Box>
-          <Box textAlign={"center"} maxWidth={{lg: "50%"}}>
-            <Text textStyle="h4" maxWidth={{lg: "50%"}}>
+          <Box
+            textAlign={"center"}
+            maxWidth={{ lg: "50%" }}
+            mb={{ base: "8%" }}
+          >
+            <Text textStyle="h4" maxWidth={{ lg: "50%" }}>
               We are building the tooling and solutions to make gaming rewarding
               for all invovled.
             </Text>
@@ -97,15 +101,16 @@ export const Content = () => {
             zIndex={2}
             margin="auto"
             marginTop="16px"
+            mb={{ base: "48px" }}
           >
             <Card>
               <CardImage>
                 <Image src="/assets/locked-security.png" alt="" layout="fill" />
               </CardImage>
               <TextBox>
-                <Text>Secure NFT accounts</Text>
+                <Text textStyle={{ base: "cardT" }}>Secure NFT accounts</Text>
               </TextBox>
-              <Text>
+              <Text textStyle={{ base: "cardC" }}>
                 Create an account, claim an avatar, verify ownershiper, and
                 encrypt and lock
               </Text>
@@ -115,9 +120,9 @@ export const Content = () => {
                 <Image src="/assets/delivery.png" alt="" layout="fill" />
               </CardImage>
               <TextBox>
-                <Text textStyle="cardH">Robust reward system</Text>
+                <Text textStyle={{ base: "cardT" }}>Robust reward system</Text>
               </TextBox>
-              <Text textStyle="cardS">
+              <Text textStyle={{ base: "cardC" }}>
                 We’ve built a robust reward system that includes PvE and PvP
                 competition
               </Text>
@@ -127,9 +132,9 @@ export const Content = () => {
                 <Image src="/assets/users.png" alt="" layout="fill" />
               </CardImage>
               <TextBox>
-                <Text textStyle="cardH">User centric approach</Text>
+                <Text textStyle={{ base: "cardT" }}>User centric approach</Text>
               </TextBox>
-              <Text textStyle="cardS">
+              <Text textStyle={{ base: "cardC" }}>
                 All our tooling and solutions are based on user research and
                 being dedicated gamers
               </Text>
@@ -139,9 +144,11 @@ export const Content = () => {
                 <Image src="/assets/relationship.png" alt="" layout="fill" />
               </CardImage>
               <TextBox>
-                <Text textStyle="cardH">Strategic product offering</Text>
+                <Text textStyle={{ base: "cardT" }}>
+                  Strategic product offering
+                </Text>
               </TextBox>
-              <Text textStyle="cardS">
+              <Text textStyle={{ base: "cardC" }}>
                 We have a stacked roadmap and will release features
                 strategically
               </Text>
