@@ -1,7 +1,7 @@
 import { Container } from "./layouts";
 import Image from "next/image";
 // import { Button } from "./button";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex } from "@chakra-ui/react";
 
 // const Navigation = styled("div")((props) => ({
 //   display: "flex",
@@ -36,15 +36,28 @@ export const Navbar = () => {
           <span>Vlogs</span>
         </Navigation> */}
         <Flex>
-          {/* <Button textStyle="btn2" btnStyle="primary">
-            <span>Connect</span>
+          <Button
+            borderRadius={{ base: "8px" }}
+            padding={{ base: "24px 24px" }}
+            backgroundColor={"purple.300"}
+            color={"white"}
+            fontFamily="Nunito Sans"
+            fontStyle="normal"
+            fontWeight="bold"
+            fontSize="18px"
+            lineHeight="24px"
+            letterSpacing="-0.02em"
+          >
+            <Box as="span" display={{ base: "none", md: "revert" }}>
+              Connect
+            </Box>
             <Image
               src="/icons/login.svg"
               height="24px"
               width="24px"
               alt="down"
             />
-          </Button> */}
+          </Button>
         </Flex>
       </Flex>
     </Container>

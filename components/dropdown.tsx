@@ -1,12 +1,6 @@
-// import { styled } from "goober";
-// import { FC, useEffect, useState } from "react";
-// import { Button } from "./button";
-// import { colors, fonts } from "./styles";
-// import Image from "next/image";
-
-// const Container = styled("div")((props) => ({
-//   position: "relative",
-// }));
+import { FC, useEffect, useState } from "react";
+import Image from "next/image";
+import { Box, Button, Flex } from "@chakra-ui/react";
 
 // const List = styled("div")((props) => ({
 //   display: "flex",
@@ -20,6 +14,21 @@
 //   opacity: 0.7,
 // }));
 
+const List: FC = ({ children }) => {
+  return (
+    <Flex
+      pos={"absolute"}
+      backgroundColor={"purple.300"}
+      mt="8px"
+      borderRadius={"8px"}
+      w="100%"
+      padding={"16px 8px"}
+    >
+      {children}
+    </Flex>
+  );
+};
+
 // const Item = styled("div")((props) => ({
 //   display: "flex",
 //   justifyContent: "flex-start",
@@ -32,54 +41,70 @@
 //   },
 // }));
 
-// export const Dropdown: FC<{
-//   handler: (value: string) => void;
-//   disabled: boolean;
-// }> = ({ disabled, handler }) => {
-//   const [reveal, setReveal] = useState<boolean>(false);
-//   const [value, setValue] = useState<string>("Games");
+const Item: FC<{ onclick: () => void }> = ({ children, onclick }) => {
+  return (
+    <Flex
+      justifyContent={"flex-start"}
+      padding={"8px"}
+      color={"white"}
+      onClick={onclick}
+      _hover={{ cursor: "pointer" }}
+    >
+      {children}
+    </Flex>
+  );
+};
 
-//   useEffect(() => {
-//     if (value === "Games") return;
-//     handler(value);
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [value]);
+export const Dropdown: FC<{
+  //   handler: (value: string) => void;
+  //   disabled: boolean;
+}> = () =>
+  // { disabled, handler }
+  {
+    const [reveal, setReveal] = useState<boolean>(false);
+    const [value, setValue] = useState<string>("Games");
 
-//   const data = ["League of Legends"];
+    useEffect(() => {
+      if (value === "Games") return;
+      //   handler(value);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
 
-//   return (
-//     <Container>
-//       <Button
-//         textStyle="btn1"
-//         btnStyle="primary"
-//         onClick={() => (disabled ? "" : setReveal((prev) => !prev))}
-//         disable={disabled}
-//       >
-//         <span>{value}</span>
-//         <Image
-//           src="/icons/triangle.svg"
-//           height="24px"
-//           width="24px"
-//           alt="down"
-//         />
-//       </Button>
-//       {reveal && !disabled ? (
-//         <List>
-//           {data.map((game: string, index: number) => (
-//             <Item
-//               key={`${game}_${index}`}
-//               onClick={() => {
-//                 setReveal((prev) => !prev);
-//                 setValue(game);
-//               }}
-//             >
-//               {game}
-//             </Item>
-//           ))}
-//         </List>
-//       ) : (
-//         <></>
-//       )}
-//     </Container>
-//   );
-// };
+    const data = ["League of Legends"];
+
+    return (
+      <Box>
+        <Button
+          // disabled ? "" :
+          onClick={() => setReveal((prev) => !prev)}
+          //   disable={disabled}
+        >
+          <Box as="span">{value}</Box>
+          <Image
+            src="/icons/triangle.svg"
+            height="24px"
+            width="24px"
+            alt="down"
+          />
+        </Button>
+        {/* && !disabled */}
+        {reveal ? (
+          <List>
+            {data.map((game: string, index: number) => (
+              <Item
+                key={`${game}_${index}`}
+                onclick={() => {
+                  setReveal((prev) => !prev);
+                  setValue(game);
+                }}
+              >
+                {game}
+              </Item>
+            ))}
+          </List>
+        ) : (
+          <></>
+        )}
+      </Box>
+    );
+  };

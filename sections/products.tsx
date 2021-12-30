@@ -1,6 +1,6 @@
 import { Container as PageContainer } from "../components/layouts";
 import Image from "next/image";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { FC } from "react";
 import { TextBox } from "./we-are-game-fanatics";
 
@@ -101,7 +101,12 @@ export const ProductInfo = () => {
   return (
     <BackGroundColorDiv>
       <PageContainer>
-        <Flex pos={"relative"} flexDir={"column"} w={"100%"}>
+        <Flex
+          pos={"relative"}
+          flexDir={"column"}
+          w={"100%"}
+          pb={{ base: "48px" }}
+        >
           <Box
             as="section"
             margin={{ base: "16% 4% 16% 4%", lg: "2% 24% 8% 24%" }}
@@ -150,9 +155,9 @@ export const ProductInfo = () => {
                         />
                       </Flex>
                       <Flex as="span" w={{ base: "80%" }}>
-                        <Text textStyle="h5" color="white">
+                        <Text textStyle="h3" color="white">
                           {value.title}{" "}
-                          <Text textStyle="cardS" color="white">
+                          <Text textStyle="cardT" color="white">
                             {value.content}
                           </Text>
                         </Text>
@@ -160,6 +165,22 @@ export const ProductInfo = () => {
                     </Flex>
                   );
                 })}
+                <Button
+                  borderRadius={{ base: "8px" }}
+                  padding={{ base: "25px 48px" }}
+                  backgroundColor={"transparent"}
+                  color={"white"}
+                  border={"2px solid white"}
+                  fontFamily="Nunito Sans"
+                  fontStyle="normal"
+                  fontWeight="bold"
+                  fontSize="18px"
+                  lineHeight="24px"
+                  letterSpacing="-0.02em"
+                  mt={{ base: "48px" }}
+                >
+                  Claim your Avatar
+                </Button>
               </Flex>
             </Flex>
           </Box>

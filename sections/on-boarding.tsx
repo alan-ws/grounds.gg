@@ -1,8 +1,8 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import { Container } from "../components/layouts";
-// import { Dropdown } from "../components/dropdown";
+import { Dropdown } from "../components/dropdown";
 // import Cookies from "js-cookie";
 // import Toastify from "toastify-js";
 
@@ -249,64 +249,110 @@ export const OnBoarding = () => {
 
   return (
     <Container>
-      <Box as="section" pos={{ base: "relative" }} w={{ lg: "100%" }} height={{ lg: "768px" }} overflowY={{ lg: "hidden" }}>
-        <Flex pos={{ base: "relative" }} flexDir={{ base: "column" }} flex={{ lg: 1 }}>
-          <Flex flexDir={{ base: "column" }} flex={{ lg: 1 }} alignItems={{ lg: "center" }} marginTop={{ lg: "4%" }}>
-            <Text textStyle="h3">Let’s get started</Text>
-            <Text textStyle="h4">
-              To get you onboarded and started, join Lider
+      <Box
+        as="section"
+        pos={{ base: "relative" }}
+        w={{ lg: "100%" }}
+        height={{ lg: "768px" }}
+        overflowY={{ lg: "hidden" }}
+      >
+        <Flex pos={{ base: "relative" }} flexDir={{ base: "column" }} w="100%">
+          <Flex
+            flexDir={{ base: "column" }}
+            alignItems={{ base: "center" }}
+            margin={{ base: "8% 8%", lg: "4%" }}
+          >
+            <Text textStyle="h3">To get started</Text>
+            <Text textStyle="h4" textAlign={"center"}>
+              Join the Lider wishlist and claim your pre-release avatar
             </Text>
           </Flex>
-          {/* <FormContainer>
-          <Text textStyle="placeholder">
-            Lider is our distributed, localised competitve ladder
-          </Text>
-          <Location>
-            <Button
-              btnStyle="primary"
-              textStyle="btn1"
-              onClick={handleLocation}
-            >
-              <Image src="/icons/pin.svg" height="32px" width="32px" alt="" />
-            </Button>
-            <PostcodeInput onresponse={apiPostCode || verifiedPostcode}>
-              <Input
-                ref={postCodeRef}
-                onBlur={postcodeInputCallback}
-                onFocus={clearPostCodeState}
-                onChange={handlePostcodeInput}
-                flex={2}
-                margin="4%"
-                placeholder={apiPostCode ?? "enter post/zip code"}
+          <Flex
+            flexDir={{ base: "column" }}
+            margin={"0% 8%"}
+            zIndex={2}
+            // css={{ "span:first-child": { marginBottom: "8px" } }}
+          >
+            <Flex w="100%" alignItems={"center"}>
+              <Button
+                w="20%"
+                borderRadius={{ base: "8px 8px" }}
+                backgroundColor={"purple.300"}
+                color={"white"}
+                _active={{
+                  background: "purple.100",
+                  color: "purple.500",
+                }}
+                _hover={{
+                  background: "purple.100",
+                  color: "purple.500",
+                }}
+                // onClick={handleLocation}
+              >
+                <Image src="/icons/pin.svg" height="32px" width="32px" alt="" />
+              </Button>
+              <Flex
+                // onresponse={apiPostCode || verifiedPostcode}
+                w="80%"
+              >
+                <Input
+                  // ref={postCodeRef}
+                  // onBlur={postcodeInputCallback}
+                  // onFocus={clearPostCodeState}
+                  // onChange={handlePostcodeInput}
+                  margin="4%"
+                  // placeholder={apiPostCode ?? "enter post/zip code"}
+                />
+              </Flex>
+            </Flex>
+            <Box w="97%">
+              <Dropdown
+              // handler={selectGame}
+              // disabled={apiPostCode ? !apiPostCode : !verifiedPostcode}
               />
-            </PostcodeInput>
-          </Location>
-          <DropDownCta>
-            <Dropdown
-              handler={selectGame}
-              disabled={apiPostCode ? !apiPostCode : !verifiedPostcode}
-            />
-          </DropDownCta>
-          <InputCta>
-            <Input
-              flex={1}
-              placeholder="in game name"
-              onChange={handleInGameInput}
-              disabled={!gameSelected}
-            />
-          </InputCta>
-          <CTA>
-            <Button textStyle="btn1" btnStyle="third">
-              Claim your avatar
-            </Button>
-          </CTA>
-          {icons?.current}
-          {icons?.changeTo}
-        </FormContainer> */}
-          <Box pos={"absolute"} zIndex={1} top={{ base: "16px",  lg: "164px" }} right={{ base: "32px", lg: "196px" }}>
+            </Box>
+            <Flex w="97%">
+              <Input
+                placeholder="in game name"
+                // onChange={handleInGameInput}
+                // disabled={!gameSelected}
+              />
+            </Flex>
+            <Box w="100%">
+              <Button
+                w="97%"
+                borderRadius={{ base: "8px 8px" }}
+                backgroundColor={"purple.300"}
+                color={"white"}
+                _active={{
+                  background: "purple.100",
+                  color: "purple.500",
+                }}
+                _hover={{
+                  background: "purple.100",
+                  color: "purple.500",
+                }}
+              >
+                Claim your avatar
+              </Button>
+            </Box>
+            {/* {icons?.current}
+            {icons?.changeTo} */}
+          </Flex>
+          <Box
+            pos={"absolute"}
+            zIndex={1}
+            top={{ base: "16px", lg: "164px" }}
+            right={{ base: "32px", lg: "196px" }}
+          >
             <Image src="/icons/g-one.svg" alt="" height="140px" width="150px" />
           </Box>
-          <Box os={"absolute"} zIndex={1} top={{ lg: "386px" }} right={{ lg: "96px" }}>
+          <Box
+            os={"absolute"}
+            zIndex={1}
+            top={{ lg: "386px" }}
+            right={{ lg: "96px" }}
+          >
             <Image src="/icons/g-two.svg" alt="" height="96px" width="90px" />
           </Box>
           {/* <ImageWrapper>

@@ -177,6 +177,14 @@ export const Intro = () => {
                 fontSize="18px"
                 lineHeight="24px"
                 letterSpacing="-0.02em"
+                _active={{
+                  background: "purple.100",
+                  color: "purple.500",
+                }}
+                _hover={{
+                  background: "purple.100",
+                  color: "purple.500",
+                }}
                 onClick={handleEmailSubmission}
               >
                 Join Alpha
