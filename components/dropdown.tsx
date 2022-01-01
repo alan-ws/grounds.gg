@@ -2,18 +2,6 @@ import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Box, Button, Flex } from "@chakra-ui/react";
 
-// const List = styled("div")((props) => ({
-//   display: "flex",
-//   position: "absolute",
-//   backgroundColor: colors.primary,
-//   marginTop: "8px",
-//   borderRadius: "8px",
-//   width: "100%",
-//   ...fonts["btn2"],
-//   padding: "16px 8px",
-//   opacity: 0.7,
-// }));
-
 const List: FC = ({ children }) => {
   return (
     <Flex
@@ -23,23 +11,14 @@ const List: FC = ({ children }) => {
       borderRadius={"8px"}
       w="100%"
       padding={"16px 8px"}
+      zIndex={2}
+      right={0}
+      filter={"drop-shadow(0.12rem 0.14rem 0.7rem gray)"}
     >
       {children}
     </Flex>
   );
 };
-
-// const Item = styled("div")((props) => ({
-//   display: "flex",
-//   justifyContent: "flex-start",
-//   padding: "8px",
-//   //   justifyContent: 'flex-end' (for mobile),
-//   color: colors.white,
-//   width: "100%",
-//   "&:hover": {
-//     cursor: "pointer",
-//   },
-// }));
 
 const Item: FC<{ onclick: () => void }> = ({ children, onclick }) => {
   return (
@@ -48,6 +27,7 @@ const Item: FC<{ onclick: () => void }> = ({ children, onclick }) => {
       padding={"8px"}
       color={"white"}
       onClick={onclick}
+      w="100%"
       _hover={{ cursor: "pointer" }}
     >
       {children}
@@ -73,8 +53,10 @@ export const Dropdown: FC<{
     const data = ["League of Legends"];
 
     return (
-      <Box>
+      <Box w="100%" pos="relative">
         <Button
+          w="100%"
+          justifyContent={"space-between"}
           // disabled ? "" :
           onClick={() => setReveal((prev) => !prev)}
           //   disable={disabled}
