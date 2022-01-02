@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Intro } from "../components/intro";
+import { Intro } from "../sections/intro";
 import { Navbar } from "../components/navigation";
 import { OnBoarding } from "../sections/on-boarding";
 import { ProductInfo } from "../sections/products";
 import { Content } from "../sections/we-are-game-fanatics";
-import { Footer } from "../sections/footer";
+import { Footer } from "../components/footer";
 
 const Home: NextPage = () => {
   return (

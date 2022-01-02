@@ -58,6 +58,8 @@ export const Dropdown: FC<{
           w="100%"
           justifyContent={"space-between"}
           // disabled ? "" :
+          backgroundColor="purple.300"
+          color={"white"}
           onClick={() => setReveal((prev) => !prev)}
           //   disable={disabled}
         >

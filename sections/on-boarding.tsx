@@ -262,9 +262,11 @@ export const OnBoarding = () => {
             alignItems={{ base: "center" }}
             margin={{ base: "8% 8%", lg: "4%" }}
           >
-            <Text textStyle="h3">To get started</Text>
-            <Text textStyle="h4" textAlign={"center"}>
-              Join the Lider wishlist and claim your pre-release avatar
+            <Text textStyle="h1" mb={{ base: "4%" }}>
+              Get started
+            </Text>
+            <Text textStyle="h2" textAlign={"center"}>
+              Join the Lider wailist and claim your pre-release avatar
             </Text>
           </Flex>
           <Flex
@@ -311,14 +313,14 @@ export const OnBoarding = () => {
               // disabled={apiPostCode ? !apiPostCode : !verifiedPostcode}
               />
             </Box>
-            <Flex w="97%">
+            <Flex w="97%" mb={{ base: "4%" }}>
               <Input
                 placeholder="in game name"
                 // onChange={handleInGameInput}
                 // disabled={!gameSelected}
               />
             </Flex>
-            <Box w="100%">
+            <Box w="100%" mb={{ base: "24%" }}>
               <Button
                 w="97%"
                 borderRadius={{ base: "8px 8px" }}
@@ -333,7 +335,7 @@ export const OnBoarding = () => {
                   color: "purple.500",
                 }}
               >
-                Claim your avatar
+                <Text textStyle={"h4"}>Claim your avatar</Text>
               </Button>
             </Box>
             {/* {icons?.current}
@@ -342,16 +344,16 @@ export const OnBoarding = () => {
           <Box
             pos={"absolute"}
             zIndex={1}
-            top={{ base: "16px", lg: "164px" }}
-            right={{ base: "32px", lg: "196px" }}
+            top={{ base: "24px", lg: "386px" }}
+            left={{ base: "24px", lg: "96px" }}
           >
             <Image src="/icons/g-one.svg" alt="" height="140px" width="150px" />
           </Box>
           <Box
-            os={"absolute"}
-            zIndex={1}
-            top={{ lg: "386px" }}
-            right={{ lg: "96px" }}
+            pos={"absolute"}
+            zIndex={-1}
+            bottom={{ base: "8px", lg: "386px" }}
+            right={{ base: "16px", lg: "96px" }}
           >
             <Image src="/icons/g-two.svg" alt="" height="96px" width="90px" />
           </Box>
