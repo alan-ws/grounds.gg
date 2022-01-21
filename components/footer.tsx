@@ -24,7 +24,7 @@ export const Footer = () => {
             css={{ "&>span": { marginLeft: "16px" } }}
           >
             <Image src="/icons/copy.svg" height="68px" width="32px" alt="" />
-            <Text textStyle="placeholder" color="white">
+            <Text textStyle="placeholder" color="white" ml="16px">
               2021 Puzzle Studio
             </Text>
           </Flex>
